@@ -1,0 +1,29 @@
+sequenceDiagram
+
+    participant browser
+    participant server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa 
+    activate server
+    server-->>browser: HTML document
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: stylesheet
+    deactivate server 
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate server 
+    server-->>browser: script
+    deactivate server 
+
+    Note right of browser: now the code will begin to run. 
+    Note right of server: (there was a lot of data in the repsonse so i had to cut it short.)
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->browser: [{"content":"Holaaaaa","date":"2025-04-11T16:10:46.810Z"}, ... ] 
+    deactivate server 
+
+    Note right of browser: callback function will render the items in the json response 

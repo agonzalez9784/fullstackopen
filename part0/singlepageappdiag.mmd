@@ -1,0 +1,13 @@
+sequenceDiagram
+
+    participant browser
+    participant server
+
+    Note right of browser: parameters submitted {"content":"yeehaw","date":"2025-04-12T08:29:24.656Z"}
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa 
+    activate server
+    server-->>browser: Response JSON: {"message":"note created"}
+    deactivate server
+
+    Note right of browser: callback function will call redrawNotes() and load the notes from /exampledata/data.json
+
