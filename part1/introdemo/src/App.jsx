@@ -1,9 +1,18 @@
-const Hello = (props) => {
-  console.log(props)
+import {useState} from 'react'
+
+const Hello = ({name, age}) => {
+
+  const bornYear = () => new Date().getFullYear() - age
+
   return (
     <div>
-      <p>Hello, {props.name}. You are {props.age} years old.</p>
-    </div>)
+      <p>
+        Hello {name}, you are {age} years old
+      </p>
+      <p>So you were probably born in {bornYear()}</p>
+      <p>-------------------------------------------</p>
+    </div>
+  )
 }
 
 const Footer = () => {
@@ -14,13 +23,44 @@ const Footer = () => {
   )
 }
 
+const Display = ({counter}) => {
+  return (
+    <div>{counter}</div>
+  )
+}
+
+const Button = ({onClick, text}) => {
+  return (
+    <button onClick={onClick}>
+      {text}
+    </button>
+  )
+}
+
 const App = () => {
-  
-  const friends = ['Peter', 'Maya']
+  const [ counter, setCounter ] = useState(0)
+
+  const increaseByOne = () => setCounter(counter + 1)
+  const decreaseByOne = () => setCounter(counter - 1)
+  const setToZero = () => setCounter(0)
+
+
 
   return (
     <div>
-      <p>{friends}</p>
+      <Display counter={counter}/>
+      <Button
+        onClick={increaseByOne}
+        text='plus'
+      />
+      <Button
+        onClick={setToZero}
+        text='zero'
+      />     
+      <Button
+        onClick={decreaseByOne}
+        text='minus'
+      />     
     </div>
   )
 }
